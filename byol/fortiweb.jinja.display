@@ -1,0 +1,363 @@
+description:
+  author:
+    title: Fortinet Inc.
+    descriptionHtml: >-
+      Fortinet (NASDAQ: FTNT) secures the largest enterprise, service provider,
+      and government organizations around the world. Fortinet empowers its
+      customers with intelligent, seamless protection across the expanding
+      attack surface and the power to take on ever-increasing performance
+      requirements of the borderless network—today and into the future. Only the
+      Fortinet Security Fabric architecture can deliver security without
+      compromise to address the most critical security challenges, whether in
+      networked, application, cloud, or mobile environments. Fortinet ranks
+      number one in the most security appliances shipped worldwide and more than
+      500,000 customers trust Fortinet to protect their businesses.
+
+
+      Please contact us at gcpsales@fortinet.com for questions or assistance.
+    shortDescription: >-
+      Fortinet (NASDAQ: FTNT), headquartered in Sunnyvale, California, is a
+      worldwide vendor of network security products providing customers with
+      broad, integrated, and high-performance protection against dynamic
+      security threats while simplifying the IT security infrastructure.
+    url: 'https://www.fortinet.com'
+  descriptionHtml: "<p>Deploy critical line-of-business web applications with confidence using FortiWeb, Fortinet’s WAF solution that automatically evolves with your application, using innovative machine learning techniques to detect anomalies and block threats without blocking legitimate users.  Spend less time managing false positives and manually tuning WAF rules. FortiWeb delivers a full Web Application and API Protection (WAAP) solution, including OWASP Top 10 threat protection, bot mitigation, API security, and threat intelligence from FortiGuard Labs..</p>\n\n<p>Keeps your application safe from vulnerability exploits, bots, malware uploads, DoS attacks, advanced persistent threats (APTs), and zero day attacks..</p>\n\nFortiWeb software editions offer the same features of the FortiWeb hardware-based appliances with the flexibility to deploy instances as needed to meet the demands of dynamic application hosting environments.. </p>\n\n<b>Highlights:</b></p>\n\n•\t<b>Effective</b> protection using multiple techniques including machine learning, signatures, IP reputation, antivirus, and bot mitigation</p>\n•\t<b>Integrated</b> with FortiGate, FortiSandbox, and leading third-party vulnerability scanners for enhanced zero-day threat protection and virtual application patching</p>\n•\t<b>Accurate</b> with deep learning capabilities that model your application’s behavior to minimize the false positive detections that drive administrative overhead.</p>"
+  logo: '@media/fortiweb_store.png'
+  tagline: 'AI-based, multi-layered protection for web-based applications'
+  title: Fortinet FortiWeb Web Application Firewall WAF VM
+  url: 'https://www.fortinet.com/products/web-application-firewall/fortiweb.html'
+  version: 6.3.15
+  documentations:
+    - title: Administration Guide
+      url: 'https://docs.fortinet.com/product/fortiweb/'
+      description: FortiWeb Administration Guide
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_POST_DEPLOY
+    - title: Getting Started Guide for Google Cloud
+      url: >-
+        https://docs.fortinet.com/document/fortiweb-public-cloud/latest/deploying-fortiweb-from-google-cloud-marketplace/195813/initial-deployment
+      description: FortiWeb quick start guide for Google Cloud
+      destinations:
+        - DESTINATION_SOLUTION_DETAILS
+        - DESTINATION_POST_DEPLOY
+  support:
+    - title: Support
+      descriptionHtml: >-
+        Fortinet FortiCare Support Services give you global support on a
+        per-product basis. By subscribing to these services, you'll receive a
+        timely response to any technical issue as well as complete visibility on
+        ticket resolution progress. All FortiCare Support Services include
+        firmware upgrades, access to the support portal and associated technical
+        resources. FortiGuard Security Services include up-to-the minute threat
+        intelligence delivered in real time to stop the latest threats.
+      url: 'https://www.fortinet.com/support-and-training/support/contact.html'
+  icon: '@media/fortiweb_small.png'
+  softwareGroups:
+    - type: SOFTWARE_GROUP_OS
+      software:
+        - title: FortiWeb
+          version: 6.3.15
+input:
+  properties:
+    - name: zone
+      title: Zone
+    - name: machineType
+      title: Machine type
+    - name: bootDiskType
+      title: Boot disk type
+      section: BOOT_DISK
+    - name: bootDiskSizeGb
+      title: Boot disk size in GB
+      section: BOOT_DISK
+    - name: network
+      title: Network name
+      section: NETWORKING
+    - name: subnetwork
+      title: Subnetwork name
+      section: NETWORKING
+    - name: externalIP
+      title: External IP
+      tooltip: >-
+        An external IP address associated with this instance. Selecting "None"
+        will result in the instance having no external internet access. <a
+        href="https://cloud.google.com/compute/docs/configure-instance-ip-addresses">Learn
+        more</a>
+      section: NETWORKING
+    - name: enableTcp22
+      title: Allow TCP port 22 traffic from the Internet
+      section: NETWORKING
+    - name: tcp22SourceRanges
+      title: Source IP ranges for TCP port 22 traffic
+      tooltip: >-
+        Traffic is only allowed from sources within these IP address ranges. Use
+        CIDR notation when entering ranges. <a
+        href="https://cloud.google.com/compute/docs/networking#firewalls">Learn
+        more</a>
+      placeholder: '0.0.0.0/0, 192.169.0.2/24'
+      section: NETWORKING
+    - name: enableTcp80
+      title: Allow HTTP traffic from the Internet
+      section: NETWORKING
+    - name: tcp80SourceRanges
+      title: Source IP ranges for HTTP traffic
+      tooltip: >-
+        Traffic is only allowed from sources within these IP address ranges. Use
+        CIDR notation when entering ranges. <a
+        href="https://cloud.google.com/compute/docs/networking#firewalls">Learn
+        more</a>
+      placeholder: '0.0.0.0/0, 192.169.0.2/24'
+      section: NETWORKING
+    - name: enableTcp443
+      title: Allow HTTPS traffic from the Internet
+      section: NETWORKING
+    - name: tcp443SourceRanges
+      title: Source IP ranges for HTTPS traffic
+      tooltip: >-
+        Traffic is only allowed from sources within these IP address ranges. Use
+        CIDR notation when entering ranges. <a
+        href="https://cloud.google.com/compute/docs/networking#firewalls">Learn
+        more</a>
+      placeholder: '0.0.0.0/0, 192.169.0.2/24'
+      section: NETWORKING
+    - name: enableTcp8080
+      title: Allow TCP port 8080 traffic from the Internet
+      section: NETWORKING
+    - name: tcp8080SourceRanges
+      title: Source IP ranges for TCP port 8080 traffic
+      tooltip: >-
+        Traffic is only allowed from sources within these IP address ranges. Use
+        CIDR notation when entering ranges. <a
+        href="https://cloud.google.com/compute/docs/networking#firewalls">Learn
+        more</a>
+      placeholder: '0.0.0.0/0, 192.169.0.2/24'
+      section: NETWORKING
+    - name: enableTcp8443
+      title: Allow TCP port 8443 traffic from the Internet
+      section: NETWORKING
+    - name: tcp8443SourceRanges
+      title: Source IP ranges for TCP port 8443 traffic
+      tooltip: >-
+        Traffic is only allowed from sources within these IP address ranges. Use
+        CIDR notation when entering ranges. <a
+        href="https://cloud.google.com/compute/docs/networking#firewalls">Learn
+        more</a>
+      placeholder: '0.0.0.0/0, 192.169.0.2/24'
+      section: NETWORKING
+    - name: ipForward
+      title: IP forwarding
+      tooltip: >-
+        Forwarding allows the instance to help route packets. <a
+        href="https://cloud.google.com/compute/docs/networking#canipforward">Learn
+        more</a>
+      section: NETWORKING
+      level: 1
+    - name: enableNetwork2
+      title: Enable 2nd Network Interface
+      section: ADDITIONAL_NETWORKS
+    - name: network2
+      title: Network name
+      section: ADDITIONAL_NETWORKS
+    - name: subnetwork2
+      title: Subnetwork name
+      section: ADDITIONAL_NETWORKS
+    - name: externalIP2
+      title: External IP
+      tooltip: >-
+        An external IP address associated with this instance. Selecting "None"
+        will result in the instance having no external internet access. <a
+        href="https://cloud.google.com/compute/docs/configure-instance-ip-addresses">Learn
+        more</a>
+      section: ADDITIONAL_NETWORKS
+    - name: enableNetwork3
+      title: Enable 3rd Network Interface
+      section: ADDITIONAL_NETWORKS
+    - name: network3
+      title: Network name
+      section: ADDITIONAL_NETWORKS
+    - name: subnetwork3
+      title: Subnetwork name
+      section: ADDITIONAL_NETWORKS
+    - name: externalIP3
+      title: External IP
+      tooltip: >-
+        An external IP address associated with this instance. Selecting "None"
+        will result in the instance having no external internet access. <a
+        href="https://cloud.google.com/compute/docs/configure-instance-ip-addresses">Learn
+        more</a>
+      section: ADDITIONAL_NETWORKS
+    - name: enableNetwork4
+      title: Enable 4th Network Interface
+      section: ADDITIONAL_NETWORKS
+    - name: network4
+      title: Network name
+      section: ADDITIONAL_NETWORKS
+    - name: subnetwork4
+      title: Subnetwork name
+      section: ADDITIONAL_NETWORKS
+    - name: externalIP4
+      title: External IP
+      tooltip: >-
+        An external IP address associated with this instance. Selecting "None"
+        will result in the instance having no external internet access. <a
+        href="https://cloud.google.com/compute/docs/configure-instance-ip-addresses">Learn
+        more</a>
+      section: ADDITIONAL_NETWORKS
+    - name: enableMetaLicense
+      title: License for FWB
+      section: METADATA
+    - name: LicenseValue
+      title: The path of FWB License or paste the content of license in here
+      section: METADATA
+    - name: enableMetaUser
+      title: Enable initial bootup using user data    
+      section: METADATA
+    - name: UserDataValue
+      title: Enter the path of config file run at bootstrap
+      section: METADATA  
+  sections:
+    - name: BOOT_DISK
+      title: Boot Disk
+      tooltip: Each instance requires a disk to boot from.
+    - name: NETWORKING
+      title: Networking
+    - name: ADDITIONAL_NETWORKS
+      title: Additional Networks      
+    - name: METADATA
+      title: MetaData         
+runtime:
+  deployingMessage: Deployment can take several minutes to complete.
+  applicationTable:
+    rows:
+      - label: Site address
+        value: >-
+          <a href="http://{{ externalIp(outputs().vmSelfLink)
+          }}:8080/">http://{{ externalIp(outputs().vmSelfLink) }}:8080/</a>
+        showIf: '{{ outputs().hasExternalIP }}'
+      - label: Site address (internal IP)
+        value: 'http://{{ outputs().vmInternalIP }}:8080/'
+        showIf: '{{ !outputs().hasExternalIP }}'
+      - label: Admin URL
+        value: >-
+          <a href="https://{{ externalIp(outputs().vmSelfLink)
+          }}:8443/">https://{{ externalIp(outputs().vmSelfLink) }}:8443/</a>
+        showIf: '{{ outputs().hasExternalIP }}'
+      - label: Admin URL (internal IP)
+        value: 'https://{{ outputs().vmInternalIP }}:8443/'
+        showIf: '{{ !outputs().hasExternalIP }}'
+      - label: Admin user
+        value: admin
+      - label: Admin password (Temporary)
+        value: '{{ outputs().password0 }}'
+      - label: Instance
+        value: >-
+          <a href="{{ consoleUrl(outputs().vmSelfLink) }}">{{ outputs().vmName
+          }}</a>
+      - label: Instance zone
+        value: '{{ properties().zone }}'
+      - label: Instance machine type
+        value: '{{ properties().machineType }}'
+  primaryButton:
+    label: Log into the admin panel
+    type: TYPE_URL
+    action: 'https://{{ externalIp(outputs().vmSelfLink) }}:8443/'
+  secondaryButton:
+    label: SSH
+    type: TYPE_GCE_VM_SSH
+    action: '{{ outputs().vmSelfLink }}'
+  suggestedActions:
+    - heading: No external IP configured
+      description: >-
+        The VM instance has been configured with no external IP or internet
+        access. Connecting to it directly may not be possible. Consider using a
+        <a
+        href="https://cloud.google.com/compute/docs/instances/connecting-advanced#bastion_host">bastion
+        host</a> to access this VM.
+      showIf: '{{ !outputs().hasExternalIP }}'
+    - heading: Request a license
+      description: >-
+        This is a BYOL solution which requires a valid license to use. <a
+        href="https://www.fortinet.com/support-and-training/support/contact.html">Request
+        a license</a>
+    - heading: Open TCP port 22 traffic
+      description: >-
+        This firewall rule is not enabled. To allow specific network traffic
+        from the Internet, create a firewall rule to open TCP port 22 traffic
+        for target tag "{{ outputs().deployment }}-deployment". <a
+        href="https://cloud.google.com/compute/docs/networking">Learn
+        more</a><br> If you are using Google Cloud SDK, type the following
+        command in the terminal:
+      snippet: >-
+        gcloud --project={{ outputs().project }} compute firewall-rules create
+        "{{ outputs().deployment }}-tcp-22" --network {{ outputs().mainNetwork
+        }} --allow tcp:22 --target-tags "{{ outputs().deployment }}-deployment"
+      showIf: '{{ !properties().enableTcp22 }}'
+    - heading: Open HTTP traffic
+      description: >-
+        This firewall rule is not enabled. To allow specific network traffic
+        from the Internet, create a firewall rule to open HTTP traffic for
+        target tag "{{ outputs().deployment }}-deployment". <a
+        href="https://cloud.google.com/compute/docs/networking">Learn
+        more</a><br> If you are using Google Cloud SDK, type the following
+        command in the terminal:
+      snippet: >-
+        gcloud --project={{ outputs().project }} compute firewall-rules create
+        "{{ outputs().deployment }}-tcp-80" --network {{ outputs().mainNetwork
+        }} --allow tcp:80 --target-tags "{{ outputs().deployment }}-deployment"
+      showIf: '{{ !properties().enableTcp80 }}'
+    - heading: Open HTTPS traffic
+      description: >-
+        This firewall rule is not enabled. To allow specific network traffic
+        from the Internet, create a firewall rule to open HTTPS traffic for
+        target tag "{{ outputs().deployment }}-deployment". <a
+        href="https://cloud.google.com/compute/docs/networking">Learn
+        more</a><br> If you are using Google Cloud SDK, type the following
+        command in the terminal:
+      snippet: >-
+        gcloud --project={{ outputs().project }} compute firewall-rules create
+        "{{ outputs().deployment }}-tcp-443" --network {{ outputs().mainNetwork
+        }} --allow tcp:443 --target-tags "{{ outputs().deployment }}-deployment"
+      showIf: '{{ !properties().enableTcp443 }}'
+    - heading: Open TCP port 8080 traffic
+      description: >-
+        This firewall rule is not enabled. To allow specific network traffic
+        from the Internet, create a firewall rule to open TCP port 8080 traffic
+        for target tag "{{ outputs().deployment }}-deployment". <a
+        href="https://cloud.google.com/compute/docs/networking">Learn
+        more</a><br> If you are using Google Cloud SDK, type the following
+        command in the terminal:
+      snippet: >-
+        gcloud --project={{ outputs().project }} compute firewall-rules create
+        "{{ outputs().deployment }}-tcp-8080" --network {{ outputs().mainNetwork
+        }} --allow tcp:8080 --target-tags "{{ outputs().deployment
+        }}-deployment"
+      showIf: '{{ !properties().enableTcp8080 }}'
+    - heading: Open TCP port 8443 traffic
+      description: >-
+        This firewall rule is not enabled. To allow specific network traffic
+        from the Internet, create a firewall rule to open TCP port 8443 traffic
+        for target tag "{{ outputs().deployment }}-deployment". <a
+        href="https://cloud.google.com/compute/docs/networking">Learn
+        more</a><br> If you are using Google Cloud SDK, type the following
+        command in the terminal:
+      snippet: >-
+        gcloud --project={{ outputs().project }} compute firewall-rules create
+        "{{ outputs().deployment }}-tcp-8443" --network {{ outputs().mainNetwork
+        }} --allow tcp:8443 --target-tags "{{ outputs().deployment
+        }}-deployment"
+      showIf: '{{ !properties().enableTcp8443 }}'
+    - heading: Change the temporary password
+      description: 'For additional security, it is recommended that you change the password.'
+    - heading: Assign a static external IP address to your VM instance
+      description: >-
+        An ephemeral external IP address has been assigned to the VM instance.
+        If you require a static external IP address, you may promote the address
+        to static. <a
+        href="https://cloud.google.com/compute/docs/instances-and-network#promote_ephemeral_ip">Learn
+        more</a>
+      showIf: '{{ outputs().hasExternalIP }}'
+annotations:
+  autogenSpecType: SINGLE_VM
+  vmImage0: >-
+    https://www.googleapis.com/compute/v1/projects/fortigcp-project-001/global/images/fwb-6315-byol-09012021-001-w-license
+metadata_version: v1

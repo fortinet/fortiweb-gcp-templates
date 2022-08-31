@@ -1,0 +1,213 @@
+{% import "path_utils.jinja" as path_utils with context %}
+
+{% set project = env["project"] %}
+{% set deployment = env["deployment"] %}
+{% set name = "%s-vm-tmpl" % env["name"] %}
+{% set instanceName = "%s-vm" % deployment %}
+{% set zone = properties["zone"] %}
+{% set machineType = properties["machineType"] %}
+{% set networks = path_utils.networkPath(properties["network"]) %}
+{% if networks is string %}
+  {% set networks = [path_utils.networkPath(properties["network"])] %}
+{% endif %}
+{% set subnetworks = properties["subnetwork"] %}
+{% if subnetworks is string %}
+  {% set subnetworks = [properties["subnetwork"]] %}
+{% endif %}
+{% set externalIPs = properties["externalIP"] %}
+{% if externalIPs is string %}
+  {% set externalIPs = [properties["externalIP"]] %}
+{% endif %}
+{% set bootDiskType = properties["bootDiskType"] %}
+{% set bootDiskSizeGb = properties["bootDiskSizeGb"] %}
+{% set hasExternalIP = externalIPs and externalIPs[0] != "NONE" %}
+{# Software status only works if the VM has an external IP. #}
+{% set enableStatusWaiter = hasExternalIP %}
+{% set canIpForward = properties["ipForward"] == "On" %}
+{% if properties["enableNetwork2"] %}
+  {{ networks.append(path_utils.networkPath(properties["network2"]))|default("",True) }}
+  {{ subnetworks.append(properties["subnetwork2"])|default("",True) }}
+  {{ externalIPs.append(properties["externalIP2"])|default("",True) }}
+{% endif %}
+{% if properties["enableNetwork3"] %}
+  {{ networks.append(path_utils.networkPath(properties["network3"]))|default("",True) }}
+  {{ subnetworks.append(properties["subnetwork3"])|default("",True) }}
+  {{ externalIPs.append(properties["externalIP3"])|default("",True) }}
+{% endif %}
+{% if properties["enableNetwork4"] %}
+  {{ networks.append(path_utils.networkPath(properties["network4"]))|default("",True) }}
+  {{ subnetworks.append(properties["subnetwork4"])|default("",True) }}
+  {{ externalIPs.append(properties["externalIP4"])|default("",True) }}
+{% endif %}
+
+resources:
+  - name: {{ name }}
+    type: vm_instance.py
+    properties:
+      instanceName: {{ instanceName }}
+      # sourceImage: https://www.googleapis.com/compute/v1/projects/dev-project-001-166400/global/images/marcopocfwb?project=dev-project-001-166400
+      sourceImage: https://www.googleapis.com/compute/v1/projects/fortigcp-project-001/global/images/fwb-6315-byol-09012021-001-w-license
+      zone: {{ zone }}
+      machineType: {{ machineType }}
+      networks:
+      {% for network in networks %}
+        - {{ network }}
+      {% endfor %}
+      {% if subnetworks is defined and subnetworks %}
+      subnetworks:
+      {% for subnetwork in subnetworks %}
+        - {{ subnetwork or '' }}
+      {% endfor %}
+      {% endif %}
+      {% if externalIPs is defined and externalIPs %}
+      externalIPs:
+      {% for externalIP in externalIPs %}
+        - {{ externalIP }}
+      {% endfor %}
+      {% endif %}
+      bootDiskType: {{ bootDiskType }}
+      bootDiskSizeGb: {{ bootDiskSizeGb }}
+      canIpForward: {{ canIpForward }}
+      serviceAccounts:
+        - email: default
+          scopes:
+            - 'https://www.googleapis.com/auth/cloud.useraccounts.readonly'
+            - 'https://www.googleapis.com/auth/devstorage.read_only'
+            - 'https://www.googleapis.com/auth/logging.write'
+            - 'https://www.googleapis.com/auth/monitoring.write'
+      metadata:
+        items:
+          - key: fortiweb_user_password
+            value: $(ref.generated-password-0.password)
+        {% if properties["enableMetaLicense"] %}
+          - key: license
+            value: {{properties["LicenseValue"]}}
+        {% endif %}
+        {% if properties["enableMetaUser"] %}
+          - key: user-data
+            value: {{properties["UserDataValue"]}}
+        {% endif %}            
+      tags:
+        items:
+          - {{ env["deployment"] }}-deployment
+  - name: generated-password-0
+    type: password.py
+    properties:
+      length: 11
+      includeSymbols: True
+  {% if properties["enableTcp22"] %}
+  - name: {{ env["deployment"] }}-tcp-22
+    type: compute.v1.firewall
+    properties:
+      network: {{ networks[0] }}
+      {% if properties.get("tcp22SourceRanges") %}
+      sourceRanges:
+        {% for source in properties["tcp22SourceRanges"].split(',') %}
+        - '{{ source | trim }}'
+        {% endfor %}
+      {% else %}
+      sourceRanges: ["0.0.0.0/0"]
+      {% endif %}
+      targetTags: ["{{ env["deployment"] }}-deployment"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["22"]
+  {% endif %}
+  {% if properties["enableTcp80"] %}
+  - name: {{ env["deployment"] }}-tcp-80
+    type: compute.v1.firewall
+    properties:
+      network: {{ networks[0] }}
+      {% if properties.get("tcp80SourceRanges") %}
+      sourceRanges:
+        {% for source in properties["tcp80SourceRanges"].split(',') %}
+        - '{{ source | trim }}'
+        {% endfor %}
+      {% else %}
+      sourceRanges: ["0.0.0.0/0"]
+      {% endif %}
+      targetTags: ["{{ env["deployment"] }}-deployment"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["80"]
+  {% endif %}
+  {% if properties["enableTcp443"] %}
+  - name: {{ env["deployment"] }}-tcp-443
+    type: compute.v1.firewall
+    properties:
+      network: {{ networks[0] }}
+      {% if properties.get("tcp443SourceRanges") %}
+      sourceRanges:
+        {% for source in properties["tcp443SourceRanges"].split(',') %}
+        - '{{ source | trim }}'
+        {% endfor %}
+      {% else %}
+      sourceRanges: ["0.0.0.0/0"]
+      {% endif %}
+      targetTags: ["{{ env["deployment"] }}-deployment"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["443"]
+  {% endif %}
+  {% if properties["enableTcp8080"] %}
+  - name: {{ env["deployment"] }}-tcp-8080
+    type: compute.v1.firewall
+    properties:
+      network: {{ networks[0] }}
+      {% if properties.get("tcp8080SourceRanges") %}
+      sourceRanges:
+        {% for source in properties["tcp8080SourceRanges"].split(',') %}
+        - '{{ source | trim }}'
+        {% endfor %}
+      {% else %}
+      sourceRanges: ["0.0.0.0/0"]
+      {% endif %}
+      targetTags: ["{{ env["deployment"] }}-deployment"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["8080"]
+  {% endif %}
+  {% if properties["enableTcp8443"] %}
+  - name: {{ env["deployment"] }}-tcp-8443
+    type: compute.v1.firewall
+    properties:
+      network: {{ networks[0] }}
+      {% if properties.get("tcp8443SourceRanges") %}
+      sourceRanges:
+        {% for source in properties["tcp8443SourceRanges"].split(',') %}
+        - '{{ source | trim }}'
+        {% endfor %}
+      {% else %}
+      sourceRanges: ["0.0.0.0/0"]
+      {% endif %}
+      targetTags: ["{{ env["deployment"] }}-deployment"]
+      allowed:
+        - IPProtocol: TCP
+          ports: ["8443"]
+  {% endif %}
+
+outputs:
+  - name: deployment
+    value: {{ deployment }}
+  - name: password0
+    value: $(ref.generated-password-0.password)
+  - name: project
+    value: {{ project }}
+  - name: vmId
+    value: $(ref.{{ instanceName }}.id)
+  - name: vmExternalIP
+    {% if hasExternalIP %}
+    value: $(ref.{{ name }}.ip)
+    {% else %}
+    value: NONE
+    {% endif %}
+  - name: vmInternalIP
+    value: $(ref.{{ name }}.internalIP)
+  - name: vmName
+    value: {{ instanceName }}
+  - name: vmSelfLink
+    value: $(ref.{{ instanceName }}.selfLink)
+  - name: hasExternalIP
+    value: {{ hasExternalIP }}
+  - name: mainNetwork
+    value: {{ networks[0] }}
