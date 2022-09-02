@@ -1,0 +1,25 @@
+name: fortiweb-gcp-templates
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    name: build-web-gcp-templates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: create-dist
+        run: |
+          zip -r gcp-template.zip ./
+          mkdir dist
+          mv gcp-template.zip ./dist/
+      - name: upload-gcp-templates-zip
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          file: ./dist/*
+          tag: ${{github.ref}}
+          overwrite: true
+          file_glob: true
+          body: "FortiWEB GCP Templates Release"
