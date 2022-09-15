@@ -26,7 +26,7 @@ description:
   tagline: 'AI-based, multi-layered protection for web-based applications'
   title: Fortinet FortiWeb Web Application Firewall WAF VM
   url: 'https://www.fortinet.com/products/web-application-firewall/fortiweb.html'
-  version: 6.3.15
+  version: 7.0.3
   documentations:
     - title: Administration Guide
       url: 'https://docs.fortinet.com/product/fortiweb/'
@@ -57,7 +57,7 @@ description:
     - type: SOFTWARE_GROUP_OS
       software:
         - title: FortiWeb
-          version: 6.3.15
+          version: 7.0.3
 input:
   properties:
     - name: zone
