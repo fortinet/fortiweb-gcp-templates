@@ -152,63 +152,6 @@ input:
         more</a>
       section: NETWORKING
       level: 1
-    - name: enableNetwork2
-      title: Enable 2nd Network Interface
-      section: ADDITIONAL_NETWORKS
-    - name: network2
-      title: Network name
-      section: ADDITIONAL_NETWORKS
-    - name: subnetwork2
-      title: Subnetwork name
-      section: ADDITIONAL_NETWORKS
-    - name: externalIP2
-      title: External IP
-      tooltip: >-
-        An external IP address associated with this instance. Selecting "None"
-        will result in the instance having no external internet access. <a
-        href="https://cloud.google.com/compute/docs/configure-instance-ip-addresses">Learn
-        more</a>
-      section: ADDITIONAL_NETWORKS
-    - name: enableNetwork3
-      title: Enable 3rd Network Interface
-      section: ADDITIONAL_NETWORKS
-    - name: network3
-      title: Network name
-      section: ADDITIONAL_NETWORKS
-    - name: subnetwork3
-      title: Subnetwork name
-      section: ADDITIONAL_NETWORKS
-    - name: externalIP3
-      title: External IP
-      tooltip: >-
-        An external IP address associated with this instance. Selecting "None"
-        will result in the instance having no external internet access. <a
-        href="https://cloud.google.com/compute/docs/configure-instance-ip-addresses">Learn
-        more</a>
-      section: ADDITIONAL_NETWORKS
-    - name: enableNetwork4
-      title: Enable 4th Network Interface
-      section: ADDITIONAL_NETWORKS
-    - name: network4
-      title: Network name
-      section: ADDITIONAL_NETWORKS
-    - name: subnetwork4
-      title: Subnetwork name
-      section: ADDITIONAL_NETWORKS
-    - name: externalIP4
-      title: External IP
-      tooltip: >-
-        An external IP address associated with this instance. Selecting "None"
-        will result in the instance having no external internet access. <a
-        href="https://cloud.google.com/compute/docs/configure-instance-ip-addresses">Learn
-        more</a>
-      section: ADDITIONAL_NETWORKS
-    - name: enableMetaLicense
-      title: License for FWB
-      section: METADATA
-    - name: LicenseValue
-      title: The path of FWB License or paste the content of license in here
-      section: METADATA
     - name: enableMetaUser
       title: Enable initial bootup using user data    
       section: METADATA
@@ -221,8 +164,6 @@ input:
       tooltip: Each instance requires a disk to boot from.
     - name: NETWORKING
       title: Networking
-    - name: ADDITIONAL_NETWORKS
-      title: Additional Networks      
     - name: METADATA
       title: MetaData         
 runtime:

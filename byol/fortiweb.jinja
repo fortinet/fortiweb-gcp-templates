@@ -6,39 +6,18 @@
 {% set instanceName = "%s-vm" % deployment %}
 {% set zone = properties["zone"] %}
 {% set machineType = properties["machineType"] %}
-{% set networks = path_utils.networkPath(properties["network"]) %}
-{% if networks is string %}
-  {% set networks = [path_utils.networkPath(properties["network"])] %}
-{% endif %}
+{% set networks = [] %}
+{% for network in properties["network"] %}
+{% set _ = networks.append(path_utils.networkPath(network)) %}
+{% endfor %}
 {% set subnetworks = properties["subnetwork"] %}
-{% if subnetworks is string %}
-  {% set subnetworks = [properties["subnetwork"]] %}
-{% endif %}
 {% set externalIPs = properties["externalIP"] %}
-{% if externalIPs is string %}
-  {% set externalIPs = [properties["externalIP"]] %}
-{% endif %}
 {% set bootDiskType = properties["bootDiskType"] %}
 {% set bootDiskSizeGb = properties["bootDiskSizeGb"] %}
 {% set hasExternalIP = externalIPs and externalIPs[0] != "NONE" %}
 {# Software status only works if the VM has an external IP. #}
 {% set enableStatusWaiter = hasExternalIP %}
 {% set canIpForward = properties["ipForward"] == "On" %}
-{% if properties["enableNetwork2"] %}
-  {{ networks.append(path_utils.networkPath(properties["network2"]))|default("",True) }}
-  {{ subnetworks.append(properties["subnetwork2"])|default("",True) }}
-  {{ externalIPs.append(properties["externalIP2"])|default("",True) }}
-{% endif %}
-{% if properties["enableNetwork3"] %}
-  {{ networks.append(path_utils.networkPath(properties["network3"]))|default("",True) }}
-  {{ subnetworks.append(properties["subnetwork3"])|default("",True) }}
-  {{ externalIPs.append(properties["externalIP3"])|default("",True) }}
-{% endif %}
-{% if properties["enableNetwork4"] %}
-  {{ networks.append(path_utils.networkPath(properties["network4"]))|default("",True) }}
-  {{ subnetworks.append(properties["subnetwork4"])|default("",True) }}
-  {{ externalIPs.append(properties["externalIP4"])|default("",True) }}
-{% endif %}
 
 resources:
   - name: {{ name }}
