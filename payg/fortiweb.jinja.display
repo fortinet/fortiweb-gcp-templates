@@ -26,7 +26,7 @@ description:
   tagline: 'AI-based, multi-layered protection for web-based applications'
   title: Fortinet FortiWeb Web Application Firewall WAF VM (PAYG)
   url: 'https://www.fortinet.com/products/web-application-firewall/fortiweb.html'
-  version: 7.2.3
+  version: 7.2.4
   documentations:
     - title: Administration Guide
       url: 'https://docs.fortinet.com/product/fortiweb/'
@@ -57,7 +57,7 @@ description:
     - type: SOFTWARE_GROUP_OS
       software:
         - title: FortiWeb
-          version: 7.2.3
+          version: 7.2.4
 input:
   properties:
     - name: zone
@@ -295,5 +295,5 @@ runtime:
 annotations:
   autogenSpecType: SINGLE_VM
   vmImage0: >-
-    https://www.googleapis.com/compute/v1/projects/fortigcp-project-001/global/images/fwb-723-payg-06192023-001-w-license
+    https://www.googleapis.com/compute/v1/projects/fortigcp-project-001/global/images/fwb-724-payg-07182023-001-w-license
 metadata_version: v1
