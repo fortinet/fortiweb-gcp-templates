@@ -154,15 +154,20 @@ properties:
   enableMetaLicense:
     type: boolean
     default: False
+  UseFlexLicense:
+    type: string
+    enum:
+      - 'Yes'
+      - 'No'
+    default: 'No'
   LicenseValue:
     type: string
-    default: NONE
   enableMetaUser:
     type: boolean
     default: False
   UserDataValue:
     type: string
-    default: NONE
+
     
 outputs:
   deployment:

@@ -155,8 +155,12 @@ input:
     - name: enableMetaLicense
       title: License for FWB
       section: METADATA
+    - name: UseFlexLicense
+      title: Use Flex License for FWB
+      section: METADATA
     - name: LicenseValue
-      title: The path of FWB License or paste the content of license in here
+      title: Input the value according to license type
+      tooltip: If flex license is enable, please enter the token here else provide the path of FWB License or paste the content of license in here
       section: METADATA
     - name: enableMetaUser
       title: Enable initial bootup using user data    

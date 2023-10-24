@@ -59,8 +59,13 @@ resources:
           - key: fortiweb_user_password
             value: $(ref.generated-password-0.password)
         {% if properties["enableMetaLicense"] %}
+        {% if properties["UseFlexLicense"] == "Yes" %}
+          - key: flex_token
+            value: {{properties["LicenseValue"]}}
+        {% else %}
           - key: license
             value: {{properties["LicenseValue"]}}
+        {% endif %}
         {% endif %}
         {% if properties["enableMetaUser"] %}
           - key: user-data
