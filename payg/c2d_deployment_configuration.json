@@ -1,6 +1,6 @@
 {
   "defaultDeploymentType": "SINGLE_VM",
-  "imageName": "fwb-743-payg-05292024-001-w-license",
+  "imageName": "fwb-760-payg-07092024-001-w-license",
   "projectId": "fortigcp-project-001",
   "templateName": "nonexistent_template",
   "useSolutionPackage": true
