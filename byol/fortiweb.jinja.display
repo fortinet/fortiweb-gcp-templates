@@ -156,7 +156,7 @@ input:
       title: License for FWB
       section: METADATA
     - name: UseFlexLicense
-      title: Use Flex License for FWB
+      title: Use FortiFlex License for FWB
       section: METADATA
     - name: LicenseValue
       title: Input the value according to license type
