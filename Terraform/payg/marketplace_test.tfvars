@@ -1,0 +1,6 @@
+goog_cm_deployment_name="test-deployment"
+tcp_8443_ip_source_ranges=""
+tcp_8080_ip_source_ranges=""
+tcp_443_ip_source_ranges=""
+tcp_80_ip_source_ranges=""
+tcp_22_ip_source_ranges=""

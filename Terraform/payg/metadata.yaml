@@ -1,0 +1,136 @@
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: marketplace-tools
+  annotations:
+    autogenSpecType: SINGLE_VM
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: FortiWeb FortiWeb Web Application Firewall WAF
+    version: "1.0"
+    actuationTool:
+      flavor: Terraform
+      version: ">= 1.2"
+    description: {}
+  content: {}
+  interfaces:
+    variables:
+      - name: boot_disk_size
+        description: The boot disk size for the VM instance in GBs
+        varType: string
+        defaultValue: "31"
+      - name: boot_disk_type
+        description: The boot disk type for the VM instance.
+        varType: string
+        defaultValue: pd-ssd
+      - name: enable_tcp_22
+        description: Enable network traffic over port 22
+        varType: bool
+        defaultValue: true
+      - name: enable_tcp_80
+        description: Enable network traffic over port 80
+        varType: bool
+        defaultValue: true
+      - name: enable_tcp_443
+        description: Enable network traffic over port 443
+        varType: bool
+        defaultValue: true
+      - name: enable_tcp_8080
+        description: Enable network traffic over port 3000
+        varType: bool
+        defaultValue: true
+      - name: enable_tcp_8443
+        description: Enable network traffic over port 8443
+        varType: bool
+        defaultValue: true
+      - name: external_ips
+        description: The external IPs assigned to the VM for public access.
+        varType: list(string)
+        defaultValue:
+          - EPHEMERAL
+      - name: goog_cm_deployment_name
+        description: The name of the deployment and VM instance.
+        varType: string
+        required: true
+      - name: machine_type
+        description: The machine type to create, e.g. e2-small
+        varType: string
+        defaultValue: n2-standard-4
+      - name: networks
+        description: The network name to attach the VM instance.
+        varType: list(string)
+        defaultValue:
+          - default
+      - name: project_id
+        description: The ID of the project in which to provision resources.
+        varType: string
+        required: true
+      - name: source_image
+        description: The image name for the disk for the VM instance.
+        varType: string
+        defaultValue: "projects/fortigcp-project-001/global/images/fwb-763-payg-03102025-001-w-license"
+      - name: sub_networks
+        description: The sub network name to attach the VM instance.
+        varType: list(string)
+        defaultValue: []
+      - name: tcp_8443_ip_source_ranges
+        description: A comma separated string of source IP ranges for accessing the VM instance over TCP port 8443.
+        varType: string
+        required: true
+        defaultValue: "0.0.0.0/0"
+      - name: tcp_8080_ip_source_ranges
+        description: A comma separated string of source IP ranges for accessing the VM instance over TCP port 8080.
+        varType: string
+        required: true
+        defaultValue: "0.0.0.0/0"
+      - name: tcp_443_ip_source_ranges
+        description: A comma separated string of source IP ranges for accessing the VM instance over HTTPS port 443.
+        varType: string
+        required: true
+        defaultValue: "0.0.0.0/0"
+      - name: tcp_80_ip_source_ranges
+        description: A comma separated string of source IP ranges for accessing the VM instance over HTTP port 80.
+        varType: string
+        required: true
+        defaultValue: "0.0.0.0/0"
+      - name: tcp_22_ip_source_ranges
+        description: A comma separated string of source IP ranges for accessing the VM instance over HTTP port 22.
+        varType: string
+        required: true
+        defaultValue: "0.0.0.0/0"
+      - name: zone
+        description: The zone for the solution to be deployed.
+        varType: string
+        defaultValue: us-central1-b
+      - name: enable_ip_forward
+        description: Enable IP Forward
+        varType: bool
+        defaultValue: true
+
+      - name: enable_meta_user
+        description: Enable initial bootup using user data
+        varType: bool
+        defaultValue: false
+      - name: user_data_value
+        description: Enter the path of config file run at bootstrap
+        varType: string
+        defaultValue: ""
+
+    outputs:
+      - name: admin_user
+        description: Admin username for FortiWeb
+      - name: admin_password
+        description: Password for the admin user
+      - name: has_external_ip
+        description: Flag to indicate if the FortiWeb machine has an external IP
+      - name: instance_machine_type
+        description: Machine type for the FortiWeb compute instance
+      - name: instance_nat_ip
+        description: Machine type for the FortiWeb compute instance
+      - name: instance_network
+        description: Machine type for the FortiWeb compute instance
+      - name: instance_self_link
+        description: Self-link for the FortiWeb compute instance
+      - name: instance_zone
+        description: Zone for the FortiWeb compute instance
